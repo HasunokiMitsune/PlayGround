@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#efe4d2">
+  <meta name="description" content="Pocket Sprout is a cosy creature care game. Hatch an egg, feed your little friend, play together, and watch them bloom.">
+  <title>Pocket Sprout · a tiny creature care game</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23f6ecdb'/%3E%3Cpath d='M78 20C42 20 22 38 22 62c0 11 8 18 19 18 24 0 37-24 37-60Z' fill='%2378b06f'/%3E%3Cpath d='M18 86c8-24 26-39 48-47' stroke='%23f6ecdb' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite" aria-hidden="true">
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M20.5 3.5c-9.2 0-15.6 4.6-15.6 11.1a5.1 5.1 0 0 0 5.1 5.1c6.6 0 10.5-6.7 10.5-16.2Z" fill="currentColor"/>
+      <path d="M3.5 21c2.3-7 8.1-11.5 14.7-13.4" fill="none" stroke="#fffaf0" stroke-width="1.5" stroke-linecap="round" opacity=".75"/>
+    </symbol>
+    <symbol id="i-berry" viewBox="0 0 24 24">
+      <path d="M12 21c-4.7 0-8-3.2-8-7.2C4 9.5 7.6 7 12 7s8 2.5 8 6.8C20 17.8 16.7 21 12 21Z" fill="currentColor"/>
+      <path d="M12 7c.5-2.8 2.1-4.2 4.8-4.6M12 6.4C10.3 4.8 8.7 4.3 6.8 4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="9" cy="12" r="1.2" fill="#fff" opacity=".45"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M12 20.2S3.5 15 3.5 8.9A4.6 4.6 0 0 1 12 6a4.6 4.6 0 0 1 8.5 2.9c0 6.1-8.5 11.3-8.5 11.3Z" fill="currentColor"/>
+      <path d="M8.4 9.4c.3-1 1-1.7 1.9-1.9" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24">
+      <path d="M12 2.8 14.3 9l6.4 2.3-6.4 2.3L12 20l-2.3-6.4L3.3 11.3 9.7 9Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-bubble" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="12.5" r="7" fill="currentColor" opacity=".95"/>
+      <circle cx="18.6" cy="6.2" r="2.7" fill="currentColor" opacity=".7"/>
+      <circle cx="8" cy="9.6" r="1.6" fill="#fff" opacity=".6"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20.5 15.2A8.7 8.7 0 0 1 8.8 3.5 8.9 8.9 0 1 0 20.5 15.2Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4.2" fill="currentColor"/>
+      <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-flower" viewBox="0 0 24 24">
+      <circle cx="12" cy="5.4" r="3.1" fill="currentColor" opacity=".9"/>
+      <circle cx="18.4" cy="9.9" r="3.1" fill="currentColor" opacity=".9"/>
+      <circle cx="16" cy="17.4" r="3.1" fill="currentColor" opacity=".9"/>
+      <circle cx="8" cy="17.4" r="3.1" fill="currentColor" opacity=".9"/>
+      <circle cx="5.6" cy="9.9" r="3.1" fill="currentColor" opacity=".9"/>
+      <circle cx="12" cy="12" r="2.8" fill="#f6d57c"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M4 5.4c2.9-1 5.6-.7 8 .9v13c-2.4-1.6-5.1-1.9-8-.9Zm16 0c-2.9-1-5.6-.7-8 .9v13c2.4-1.6 5.1-1.9 8-.9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M7 8.5c.9-.2 1.8-.2 2.6.1M7 11.5c.9-.2 1.8-.2 2.6.1M14.4 8.6c.9-.3 1.8-.3 2.6-.1M14.4 11.6c.9-.3 1.8-.3 2.6-.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+    </symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24">
+      <path d="M4 9.4h3.3L12 5.5v13l-4.7-3.9H4Z" fill="currentColor"/>
+      <path d="M15.2 8.2a5.4 5.4 0 0 1 0 7.6M17.8 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24">
+      <path d="M4 9.4h3.3L12 5.5v13l-4.7-3.9H4Z" fill="currentColor"/>
+      <path d="m16 9 5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-help" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M9.4 9.2A2.7 2.7 0 0 1 14.7 10c0 1.8-2.7 2-2.7 3.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      <circle cx="12" cy="17.2" r="1.15" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-droplet" viewBox="0 0 24 24">
+      <path d="M12 3.2S5.8 10 5.8 14.4a6.2 6.2 0 0 0 12.4 0C18.2 10 12 3.2 12 3.2Z" fill="currentColor"/>
+      <path d="M9 14.2a3.2 3.2 0 0 0 2.9 3.4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13.6 2 5.8 13.3h4.6L9.4 22l8.8-12.1h-4.9Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6.7 18.3 12 13 17.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <div class="page">
+    <div class="ambient" aria-hidden="true">
+      <span class="ambient-leaf leaf-a"><svg viewBox="0 0 100 100"><path d="M84 12C38 12 16 34 16 62c0 14 10 24 25 24 27 0 43-28 43-74Z"/></svg></span>
+      <span class="ambient-leaf leaf-b"><svg viewBox="0 0 100 100"><path d="M84 12C38 12 16 34 16 62c0 14 10 24 25 24 27 0 43-28 43-74Z"/></svg></span>
+      <span class="ambient-leaf leaf-c"><svg viewBox="0 0 100 100"><path d="M84 12C38 12 16 34 16 62c0 14 10 24 25 24 27 0 43-28 43-74Z"/></svg></span>
+    </div>
+
+    <header class="masthead">
+      <div class="brand">
+        <span class="brandmark" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
+        <span class="brand-text">
+          <h1>Pocket Sprout</h1>
+          <p>a tiny creature, a warm little room, and you</p>
+        </span>
+      </div>
+      <div class="head-tools">
+        <button class="icon-btn" id="soundBtn" type="button" aria-label="Mute sound" title="Sound">
+          <svg class="ico ico-sound-on"><use href="#i-sound"/></svg>
+          <svg class="ico ico-sound-off"><use href="#i-mute"/></svg>
+        </button>
+        <button class="icon-btn" id="helpBtn" type="button" aria-label="How to play" title="How to play">
+          <svg class="ico"><use href="#i-help"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="console" aria-label="Pocket Sprout">
+      <section class="top-shell">
+        <div class="screen-bezel">
+          <span class="led" aria-hidden="true"></span>
+          <span class="cam" aria-hidden="true"></span>
+          <div class="scene-wrap" id="sceneWrap">
+            <canvas id="scene" width="960" height="600" role="img" aria-label="A cosy room with a small creature on a rug"></canvas>
+            <div class="scene-ui">
+              <div class="pet-plate">
+                <span class="pet-avatar" id="petAvatar" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
+                <span class="pet-meta">
+                  <strong id="petName">Mystery Egg</strong>
+                  <small id="stageTag">Hatch me</small>
+                </span>
+              </div>
+              <div class="clock-chip">
+                <svg class="ico" id="clockIcon"><use href="#i-sun"/></svg>
+                <span id="clockText">Day 1 · 8:00 AM</span>
+              </div>
+              <div class="scene-bubble" id="bubble" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hinge" aria-hidden="true"><span></span></div>
+
+      <section class="bottom-shell">
+        <div class="touch-bezel">
+          <div class="touch-panel">
+            <div class="care-head">
+              <span class="care-label">CARE</span>
+              <div class="growth-wrap">
+                <span class="growth-label" id="growthLabel">Warmth</span>
+                <span class="growth-track" role="progressbar" aria-label="Growth" aria-valuemin="0" aria-valuemax="100" id="growthTrack"><i id="growthFill"></i></span>
+              </div>
+              <button class="text-btn" id="diaryBtn" type="button">Diary <svg class="ico"><use href="#i-arrow"/></svg></button>
+            </div>
+
+            <div class="sick-banner" id="sickBanner" hidden>
+              <span class="sick-dot" aria-hidden="true">!</span>
+              <span class="sick-copy">Your friend isn't feeling well.</span>
+              <button class="remedy-btn" id="medicineBtn" type="button">Remedy</button>
+            </div>
+
+            <div class="hatch-panel" id="hatchPanel">
+              <div class="hatch-copy">
+                <strong>Something is stirring...</strong>
+                <span>Warm the egg and help your new friend say hello.</span>
+              </div>
+              <button class="primary-btn warm-btn" id="warmBtn" type="button">
+                <svg class="ico warm-ico"><use href="#i-sun"/></svg>
+                <span>Warm the egg</span>
+              </button>
+              <div class="warm-pips" id="warmPips" aria-hidden="true"><i></i><i></i><i></i></div>
+            </div>
+
+            <div class="care-panel" id="carePanel" hidden>
+              <div class="stats" id="stats">
+                <div class="stat" data-stat="food">
+                  <div class="stat-line">
+                    <span class="stat-ico"><svg class="ico"><use href="#i-berry"/></svg></span>
+                    <span class="stat-label">Food</span>
+                    <span class="stat-value" id="statFood">80</span>
+                  </div>
+                  <span class="meter"><i id="fillFood"></i></span>
+                </div>
+                <div class="stat" data-stat="joy">
+                  <div class="stat-line">
+                    <span class="stat-ico"><svg class="ico"><use href="#i-heart"/></svg></span>
+                    <span class="stat-label">Joy</span>
+                    <span class="stat-value" id="statJoy">80</span>
+                  </div>
+                  <span class="meter"><i id="fillJoy"></i></span>
+                </div>
+                <div class="stat" data-stat="energy">
+                  <div class="stat-line">
+                    <span class="stat-ico"><svg class="ico"><use href="#i-spark"/></svg></span>
+                    <span class="stat-label">Energy</span>
+                    <span class="stat-value" id="statEnergy">80</span>
+                  </div>
+                  <span class="meter"><i id="fillEnergy"></i></span>
+                </div>
+                <div class="stat" data-stat="clean">
+                  <div class="stat-line">
+                    <span class="stat-ico"><svg class="ico"><use href="#i-bubble"/></svg></span>
+                    <span class="stat-label">Clean</span>
+                    <span class="stat-value" id="statClean">90</span>
+                  </div>
+                  <span class="meter"><i id="fillClean"></i></span>
+                </div>
+              </div>
+
+              <div class="actions" id="actions">
+                <button class="action" data-action="snack" type="button" aria-label="Give a snack" title="Snack (F)">
+                  <span class="action-ico"><svg class="ico"><use href="#i-berry"/></svg></span>
+                  <span class="action-label">Snack</span>
+                </button>
+                <button class="action" data-action="play" type="button" aria-label="Play together" title="Play (P)">
+                  <span class="action-ico"><svg class="ico"><use href="#i-spark"/></svg></span>
+                  <span class="action-label">Play</span>
+                </button>
+                <button class="action" data-action="bath" type="button" aria-label="Give a bubble bath" title="Bath (B)">
+                  <span class="action-ico"><svg class="ico"><use href="#i-droplet"/></svg></span>
+                  <span class="action-label">Bath</span>
+                </button>
+                <button class="action" data-action="rest" type="button" aria-label="Tuck in for a nap" title="Nap (N)">
+                  <span class="action-ico"><svg class="ico"><use href="#i-moon"/></svg></span>
+                  <span class="action-label">Nap</span>
+                </button>
+                <button class="action" data-action="train" type="button" aria-label="Pulse training" title="Train (T)">
+                  <span class="action-ico"><svg class="ico"><use href="#i-bolt"/></svg></span>
+                  <span class="action-label">Train</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="touch-foot">
+              <p class="hint" id="hint">Tap your friend to say hello.</p>
+              <span class="save-status" id="saveState"><i></i> Saved</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <span>Tap, feed, play, nap. Repeat.</span>
+      <span class="keys"><b>F</b> snack <b>P</b> play <b>B</b> bath <b>N</b> nap <b>T</b> train</span>
+      <span>Progress saves in this browser.</span>
+    </footer>
+  </div>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"></div>
+  </div>
+
+  <noscript><p class="noscript">Pocket Sprout needs JavaScript to wake up.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
