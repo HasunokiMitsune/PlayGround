@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#111a2b" />
+<title>ゆうやけ食堂 — Learn Japanese by serving</title>
+<meta name="description" content="A tiny night diner where you learn Japanese by listening, choosing, and serving. No flashcards." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111a2b'/%3E%3Ccircle cx='32' cy='26' r='13' fill='%23ffb35c'/%3E%3Cpath d='M12 46h40v10H12z' fill='%23e2543f'/%3E%3C/svg%3E" />
+</head>
+<body>
+<svg id="sprite" aria-hidden="true" focusable="false"></svg>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-seal" aria-hidden="true">ゆ</div>
+      <div class="brand-text">
+        <h1>ゆうやけ食堂</h1>
+        <p>yūyake shokudō <span class="dot">·</span> the sunset diner</p>
+      </div>
+    </div>
+    <div class="topstats">
+      <div class="pill day-pill" id="dayPill"><span class="pip"></span><span id="dayLabel">1日目</span></div>
+      <div class="pill coin-pill" aria-label="coins earned">
+        <svg class="coin-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#ffc65c"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#b8761e" stroke-width="1.4"/><path d="M11 7h2v10h-2zM8 9h8M8 15h8" stroke="#8a5412" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span id="coinCount">0</span>
+      </div>
+      <div class="pill combo-pill" id="comboPill" hidden>×<span id="comboCount">2</span></div>
+      <button class="icon-btn" id="soundBtn" aria-label="Sound on" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="ico-speaker" d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="ico-waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="ico-mute" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="helpBtn" aria-label="How to play">
+        <span class="qmark">?</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="board">
+    <section class="scene" id="scene" aria-label="Dining room">
+      <div class="sky" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="stars"></div>
+        <div class="hills h1"></div>
+        <div class="hills h2"></div>
+        <div class="lantern l1"><span></span></div>
+        <div class="lantern l2"><span></span></div>
+        <div class="wire"></div>
+      </div>
+      <div class="noren" aria-hidden="true">
+        <div class="panel p1"><span>ゆ</span></div>
+        <div class="panel p2"><span>う</span></div>
+        <div class="panel p3"><span>や</span></div>
+        <div class="panel p4"><span>け</span></div>
+      </div>
+
+      <div class="scene-stage">
+        <div class="speech-wrap" id="speechWrap">
+          <div class="speech" id="speech" role="button" tabindex="0" aria-label="Hear the order again">
+            <div class="speech-top">
+              <span class="who" id="whoName">おきゃくさん</span>
+              <button class="replay" id="replayBtn" aria-label="Hear it again">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span>もういちど</span>
+              </button>
+            </div>
+            <div class="sentence" id="sentence" lang="ja"></div>
+            <div class="speech-foot" id="speechFoot">
+              <div class="patience" id="patienceWrap">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 9v4l2.6 1.6M9.5 3h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                <div class="patience-track"><div class="patience-fill" id="patienceFill"></div></div>
+              </div>
+              <span class="order-no" id="orderNo">1 / 4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="customer-wrap" id="customerWrap">
+          <div class="customer" id="customer"></div>
+          <div class="stool" aria-hidden="true"></div>
+        </div>
+
+        <div class="counter" aria-hidden="true">
+          <div class="counter-top"></div>
+          <div class="counter-face">
+            <span class="counter-line"></span>
+          </div>
+          <div class="counter-bowl b1"></div>
+          <div class="counter-bowl b2"></div>
+          <div class="counter-jar"></div>
+        </div>
+
+        <div class="floaty" id="floaty" aria-live="polite"></div>
+      </div>
+
+      <div class="scene-caption" id="sceneCaption">
+        <span class="tap-ico">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V6.5a1.7 1.7 0 0 1 3.4 0V10m0-1.2a1.7 1.7 0 0 1 3.4 0V11m0-1a1.7 1.7 0 0 1 3.4 0v4.2c0 3.4-2.4 5.8-5.8 5.8h-1.3A5.7 5.7 0 0 1 7 16.6L5.2 14a1.6 1.6 0 0 1 2.3-2.2L9 13.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>おしながき から えらんで、トレイに のせよう</span>
+      </div>
+    </section>
+
+    <section class="shelf-panel" aria-label="Menu">
+      <div class="shelf-head">
+        <div class="shelf-title"><span class="vert">おしながき</span></div>
+        <div class="shelf-sub">
+          <strong>MENU</strong>
+          <span>tap to hear · tap the card to serve</span>
+        </div>
+      </div>
+      <div class="shelf" id="shelf"></div>
+      <div class="shelf-foot">
+        <span class="foot-note" id="shelfNote">ことばは おさらの うえで おぼえる</span>
+        <span class="keyhint">1–9</span>
+      </div>
+    </section>
+
+    <section class="tray-panel" aria-label="Tray">
+      <div class="tray-label">
+        <span class="tray-jp">おさら</span>
+        <span class="tray-en">your tray</span>
+      </div>
+      <div class="tray" id="tray" aria-live="polite">
+        <div class="tray-empty" id="trayEmpty">
+          <span>ここに のせる</span>
+        </div>
+      </div>
+      <div class="tray-actions">
+        <button class="clear-btn" id="clearBtn" aria-label="Return everything">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M9 8V5h6v3M7 8l1 12h8l1-12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>もどす</span>
+        </button>
+        <button class="serve-btn" id="serveBtn" aria-label="Serve the order">
+          <span class="serve-jp">どうぞ</span>
+          <span class="serve-sub">serve</span>
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="overlay" id="overlay" hidden></div>
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<script src="art.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
